@@ -2,7 +2,6 @@
 
 ## 목차
 - [1. 필수 산출물 정의 및 작성 기준](#1-필수-산출물-정의-및-작성-기준)
-- [2. GitHub 협업 체계 구축 지침](#2-github-협업-체계-구축-지침)
 
 ---
 
@@ -137,22 +136,3 @@
 ````
 
 - 💻 트러블슈팅 작성 샘플: [docs/03_reports/troubleshooting.md](docs/03_reports/troubleshooting.md)
-
----
-
-## 2. GitHub 협업 체계 구축 지침
-
-### 2.1 마일스톤 (Milestones) 설정 (2주 일정 기준)
-- v0.1: 기획 및 설계 완료 (1주차 2일차)
-- v0.5: 핵심 기능 개발 완료 (1주차 5일차)
-- v0.9: 전체 서비스 기능 통합 완료 (2주차 8일차)
-- v1.0: 최종 시연 및 산출물 정리 (2주차 10일차)
-
-### 2.2 레이블 (Labels) 체계
-- type: feat, fix, docs, refactor, test, style, chore
-- domain: user, post, reply, common
-- priority: P-0, P-1, P-2, P-3
-
-### 2.3 이슈 (Issue) 및 Pull Request 작성 규칙
-- Issue 제목 포맷: [type] 세부 기능 명칭
-- PR 생성 시 관련 Issue 자동 닫기(Closes #이슈번호) 연동 키워드 활용
