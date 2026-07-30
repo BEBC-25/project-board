@@ -344,3 +344,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/likelion/bebc
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
 	... 191 more
+2026-07-30 13:48:23.513835+09:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERPOST" not found; SQL statement:
+SELECT * FROM MEMBERPOST [42102-240]

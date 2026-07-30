@@ -1,9 +1,11 @@
 package net.likelion.bebc25.springboard.member.controller;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import net.likelion.bebc25.springboard.exception.DuplicateUsernameException;
 import net.likelion.bebc25.springboard.member.dto.MemberDto;
+import net.likelion.bebc25.springboard.member.dto.SessionMemberDto;
 import net.likelion.bebc25.springboard.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +45,7 @@ public class MemberController {
     // 실습 영역
     List<MemberDto> members = memberService.getMembers();
     model.addAttribute("members", members);
+
     return "member/list";
   }
 
@@ -104,7 +107,8 @@ public class MemberController {
   @PostMapping("/login")
   public String login(@Valid @ModelAttribute("loginForm") MemberDto member,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes) { // 로그인 실패시 에러메세지와 함께
+                              RedirectAttributes redirectAttributes,
+                              HttpSession session) { // 로그인 실패시 에러메세지와 함께
     // 실습 영역
     if(bindingResult.hasErrors()){ // 검증에 실패했을 경우
       return "member/login"; // 작성중이던 페이지로 다시 보낸다.
@@ -120,7 +124,17 @@ public class MemberController {
       return "redirect:/member/login"; // 로그인 폼 페이지로 이동
     }
 
+    // 로그인 성공 시 세션 생성해서 사용자 정보를 저장
+    SessionMemberDto sessionMember = new SessionMemberDto(memberInfo);
+    session.setAttribute("loginMember", sessionMember);
+
     return "redirect:/member/list";
+  }
+
+  @PostMapping("/logout")
+  public String logout(HttpSession httpSession){
+    httpSession.invalidate(); // 세션 파기
+    return "redirect:/";
   }
 
   /**

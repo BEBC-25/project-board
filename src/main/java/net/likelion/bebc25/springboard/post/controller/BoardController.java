@@ -1,5 +1,7 @@
 package net.likelion.bebc25.springboard.post.controller;
 
+import jakarta.servlet.http.HttpSession;
+import net.likelion.bebc25.springboard.member.dto.SessionMemberDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -89,8 +91,15 @@ public class BoardController {
 
     // 게시글 삭제 요청을 처리하는 컨트롤러
     @PostMapping("/delete")
-    public String deletePost(@RequestParam int id){
-        postService.removePost(id);
+    public String deletePost(@RequestParam int id, HttpSession session){
+        PostDto postDto = postService.getPost(id);
+        SessionMemberDto loginMember = (SessionMemberDto) session.getAttribute("loginMember");
+
+        // 삭제 권한 체크
+        if(loginMember != null && (loginMember.getId() == postDto.getMemberId() || loginMember.getRole().equals("admin"))){
+            postService.removePost(id);
+        }
+
         return "redirect:/post/list";
     }
 }

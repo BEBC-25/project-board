@@ -13,11 +13,16 @@
                 <div class="service-logo"><a th:href="@{/post/list}">사자샘터</a></div>
                 <h1 class="page-title" th:text="${title}">게시글 목록</h1>
                 <div class="user-nav">
-                    <a th:href="@{/member/login}">로그인</a>
-                    <a th:href="@{/member/register}">회원가입</a>
-                    <form th:action="@{/member/logout}" method="post">
-                        <button type="submit" class="btn-link">로그아웃</button>
-                    </form>
+                    <th:block th:if="${session.loginMember == null}">
+                        <a th:href="@{/member/login}">로그인</a>
+                        <a th:href="@{/member/register}">회원가입</a>
+                    </th:block>
+                    <th:block th:if="${session.loginMember != null}">
+                        <span class="user-welcome" th:text="${session.loginMember.username + '님'}">사용자님</span>
+                        <form th:action="@{/member/logout}" method="post">
+                            <button type="submit" class="btn-link">로그아웃</button>
+                        </form>
+                    </th:block>
                 </div>
             </div>
             <div class="nav">
