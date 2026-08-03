@@ -16,7 +16,7 @@
       </div>
     </th:block>
 
-    <form th:action="@{{action}(action=${postForm.id == 0} ? 'write' : 'edit')}" method="POST" th:object="${postForm}">
+    <form th:action="@{{action}(action=${postForm.id == 0} ? 'write' : 'edit')}" method="POST" enctype="multipart/form-data" th:object="${postForm}">
       <input type="hidden" th:field="*{id}">
       <div class="form-group">
         <label for="title">제목</label>
@@ -24,16 +24,20 @@
         <div class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">에러 메시지</div>
       </div>
 
-      <div class="form-group">
-        <label for="author">작성자</label>
-        <input type="text" id="author" th:field="*{author}" placeholder="작성자 이름을 입력하세요" required>
-        <div class="field-error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">에러 메시지</div>
-      </div>
+
 
       <div class="form-group">
         <label for="content">내용</label>
         <textarea id="content" th:field="*{content}" rows="10" placeholder="내용을 입력하세요" required></textarea>
         <div class="field-error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">에러 메시지</div>
+      </div>
+
+      <div class="form-group">
+        <label for="file">첨부파일</label>
+        <input type="file" id="file" th:field="*{file}">
+        <div th:if="${postForm.originalFilename != null}" style="font-size: 0.9em; color: #666; margin-top: 5px;">
+          기존 파일: <span th:text="${postForm.originalFilename}">파일명.txt</span>
+        </div>
       </div>
 
       <div class="form-group">
