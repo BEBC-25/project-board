@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class LocalFileStore implements FileStore {
 
   // application.properties 설정 파일의 file.dir 프로퍼티 값을 주입받음 (기본값: ./uploads/)
-  @Value("${file.dir:./uploads/}")
+  @Value("${file.dir}")
   private String fileDir;
 
   /**
