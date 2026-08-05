@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
   // application.properties 설정의 file.dir 프로퍼티 주입
-  @Value("${file.dir:./uploads/}")
+  @Value("${file.dir}")
   private String fileDir;
 
   /**
@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 
   /**
    * 브라우저의 /images/** 요청 경로를 외부 로컬 저장소 파일 디렉터리와 매핑합니다.
-   * 브라우저에서 이미지 <img> 태그 요청 시 서버 외부 폴더(./uploads/)에 위치한 실제 이미지를 찾아 연결합니다.
+   * 브라우저에서 이미지 <img> 태그 요청 시 서버 외부 폴더(application.properties 설정의 file.dir 프로퍼티)에 위치한 실제 이미지를 찾아 연결합니다.
    *
    * @param registry 정적 리소스 핸들러 레지스트리
    */

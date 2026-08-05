@@ -155,9 +155,9 @@ public class BoardController {
                           BindingResult bindingResult,
                           HttpSession session) throws IOException {
     SessionMemberDto loginMember = (SessionMemberDto) session.getAttribute("loginMember");
-    if(loginMember == null){
-      return "redirect:/member/login";
-    }
+//    if(loginMember == null){
+//      return "redirect:/member/login";
+//    }
     if(bindingResult.hasErrors()){
       return "board/write";
     }
