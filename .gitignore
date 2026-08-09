@@ -1,4 +1,6 @@
 **/*.pem
+/uploads/
+/db/
 
 HELP.md
 .gradle

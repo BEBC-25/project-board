@@ -28,13 +28,13 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-data-jdbc-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-thymeleaf-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+    // -XX:+EnableDynamicAgentLoading: JDK 21+ 환경에서 런타임 자바 에이전트(Byte Buddy)의 바이트코드 변조 명시적 허용
+    // -Xshare:off: 테스트 런타임 중 동적 에이전트 추가로 발생하는 JVM 클래스 데이터 공유(CDS, Class Data Sharing) 메모리 맵 비활성화
+    jvmArgs('-XX:+EnableDynamicAgentLoading', '-Xshare:off')
 }

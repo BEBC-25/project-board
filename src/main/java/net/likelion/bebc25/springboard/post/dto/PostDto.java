@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -28,12 +30,14 @@ public class PostDto {
     @NotBlank(message = "내용은 필수 입력 항목입니다.")
     private String content;
 
-    @NotBlank(message = "작성자는 필수 입력 항목입니다.")
-    @Size(min = 2, max = 10, message = "작성자 이름은 2자 이상 10자 이하여야 합니다.")
     private String author;
 
     private boolean secret;
     private LocalDateTime createdAt;
     private int memberId;
 
+    private String originalFilename;
+    private String storeFilename;
+    private String contentType;
+    private MultipartFile file;
 }

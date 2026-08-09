@@ -16,8 +16,10 @@ CREATE TABLE post (
     member_id INT,
     title VARCHAR(100) NOT NULL,
     content TEXT NOT NULL,
-    author VARCHAR(10) NOT NULL,
     secret BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    original_filename VARCHAR(255),
+    store_filename VARCHAR(255),
+    content_type VARCHAR(50),
     CONSTRAINT fk_post_member FOREIGN KEY (member_id) REFERENCES member(id)
 );
