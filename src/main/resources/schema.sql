@@ -20,6 +20,6 @@ CREATE TABLE post (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     original_filename VARCHAR(255),
     store_filename VARCHAR(255),
-    content_type VARCHAR(50),
+    content_type VARCHAR(5000),
     CONSTRAINT fk_post_member FOREIGN KEY (member_id) REFERENCES member(id)
 );
