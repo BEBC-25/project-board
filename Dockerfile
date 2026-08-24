@@ -1,4 +1,4 @@
 FROM eclipse-temurin:25-jre
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+WORKDIR /app
+COPY build/libs/*.jar spring-board.jar
+ENTRYPOINT ["java", "-jar", "spring-board.jar"]
