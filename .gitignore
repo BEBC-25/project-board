@@ -1,6 +1,6 @@
 
 application-secret.properties
-
+.history
 **/*.pem
 /uploads/
 /db/
@@ -42,5 +42,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-.history
